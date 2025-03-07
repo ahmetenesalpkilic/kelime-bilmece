@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,15 +14,14 @@ namespace WinFormsApp1
     public partial class Form2 : Form
 
     {
-        string[] ingkelimeler;
-        string[] türkcekelimeler;
+        List<string> ingkelimeler = new List<string>();
+        List<string> türkcekelimeler = new List<string>();
         int sayac = 0;
 
-        public Form2(int kelimesayisi)
+        public Form2()
         {
             InitializeComponent();
-            ingkelimeler = new string[kelimesayisi];
-            türkcekelimeler = new string[kelimesayisi];
+
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
@@ -37,9 +37,7 @@ namespace WinFormsApp1
         }
 
             private void textBox2_KeyDown(object sender, KeyEventArgs e)
-            { //int control1, control2;
-               
-
+            { 
 
            
             if (e.KeyCode == Keys.Enter)
@@ -56,27 +54,24 @@ namespace WinFormsApp1
                 }
 
                 // Kelime ekleme işlemine başla
-                if (sayac < ingkelimeler.Length)
-                {
-                    // Giriş yapılan kelimeleri diziye ekle
-                    ingkelimeler[sayac] = textBox1.Text.Trim();
-                    türkcekelimeler[sayac] = textBox2.Text.Trim();
-                    sayac++;
 
-                    // Kelime sayısını güncelle
-                    label5.Text = "Kelime sayısı: " + sayac + "/" + ingkelimeler.Length;
 
-                    // TextBox'ları temizle
+                // Giriş yapılan kelimeleri diziye ekle
+                ingkelimeler.Add(textBox1.Text.Trim());
+                türkcekelimeler.Add(textBox2.Text.Trim());
+                sayac++;
+
+                // Kelime sayısını güncelle
+                label5.Text = "Kelime sayısı: " + sayac + "/" + ingkelimeler.Count;
+
+
+                // TextBox'ları temizle
                     textBox1.Clear();
                     textBox2.Clear();
-                }
+                
 
                 // Son kelime girildiyse ve tüm kelimeler tamamlandıysa uyarıyı göster
-                if (sayac == ingkelimeler.Length)
-                {
-                    label4.Text = "✅ Tüm kelimeleri girdiniz. Lütfen onaylayınız.";
-                    button2.Visible = true;  // Button2'yi görünür yap
-                }
+               
 
                 // Enter tuşunun normal işlevini engelle (yani satır atlamayı engelle)
                 e.SuppressKeyPress = true;
