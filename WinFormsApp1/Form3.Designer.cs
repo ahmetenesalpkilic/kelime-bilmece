@@ -55,7 +55,7 @@
             label1.Size = new Size(160, 28);
             label1.TabIndex = 4;
             label1.Text = "ingilizce kelime :";
-            label1.Click += label1_Click;
+           
             // 
             // label3
             // 

@@ -30,8 +30,6 @@
         {
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            label3 = new Label();
             button1 = new Button();
             SuspendLayout();
             // 
@@ -50,37 +48,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(221, 115);
+            label2.Location = new Point(212, 149);
             label2.Name = "label2";
-            label2.Size = new Size(355, 28);
+            label2.Size = new Size(383, 56);
             label2.TabIndex = 2;
-            label2.Text = "Kaç farklı kelime gireceğinizi belirtiniz";
+            label2.Text = "Kelimeleri gireceğiniz forma geçmek için\r\n            onayla butonuna tıklayınız!";
             label2.Click += label2_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(321, 165);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(172, 233);
-            label3.Name = "label3";
-            label3.Size = new Size(458, 28);
-            label3.TabIndex = 4;
-            label3.Text = "kelime sayısını girdikten sonra onaylaya tıklayın";
-            label3.Click += label3_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(335, 312);
+            button1.Location = new Point(311, 257);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(146, 57);
             button1.TabIndex = 5;
             button1.Text = "onayla";
             button1.UseVisualStyleBackColor = true;
@@ -92,8 +71,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 420);
             Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(textBox1);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
@@ -106,8 +83,6 @@
         #endregion
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
-        private Label label3;
         private Button button1;
     }
 }

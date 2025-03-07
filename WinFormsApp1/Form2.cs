@@ -62,7 +62,7 @@ namespace WinFormsApp1
                 sayac++;
 
                 // Kelime sayısını güncelle
-                label5.Text = "Kelime sayısı: " + sayac + "/" + ingkelimeler.Count;
+                label5.Text = "Kelime sayısı: " + sayac ;
 
 
                 // TextBox'ları temizle

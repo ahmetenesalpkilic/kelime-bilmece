@@ -26,12 +26,7 @@ namespace WinFormsApp1
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            kelimesayisi = Convert.ToInt32(textBox1.Text);
-
-
-        }
+        
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -40,9 +35,10 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2(kelimesayisi);
+            Form2 f2 = new Form2();
             this.Hide();
             f2.ShowDialog();
         }
     }
 }
+    
