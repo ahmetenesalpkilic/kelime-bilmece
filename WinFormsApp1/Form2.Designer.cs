@@ -96,11 +96,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(185, 307);
+            label4.Location = new Point(179, 282);
             label4.Name = "label4";
-            label4.Size = new Size(469, 20);
+            label4.Size = new Size(472, 40);
             label4.TabIndex = 10;
-            label4.Text = "Kelimenin ingilizcesini ardından türkçesini girdikten sonra enter'a tıkla";
+            label4.Text = "Kelimenin ingilizcesini ardından türkçesini girdikten sonra enter'a tıkla.\r\n         Gireceğiniz kelimeler bitti ise onayla butonuna tıklayınız!\r\n";
             // 
             // button2
             // 
