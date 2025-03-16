@@ -30,25 +30,32 @@ namespace WinFormsApp1
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+            if (türkcekelimeler.Count == 0)
+            {
+                MessageBox.Show("Lütfen kelimeleri girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
             this.Hide();
             f3.ShowDialog();
 
         }
 
-            private void textBox2_KeyDown(object sender, KeyEventArgs e)
-            { 
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
 
-           
+
             if (e.KeyCode == Keys.Enter)
             {
-               
-                if(string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+                button1.Visible = true;
+
+                if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     MessageBox.Show("Lütfen her iki alanı da doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                 else if(int.TryParse(textBox1.Text, out int control1) || int.TryParse(textBox2.Text, out int control2)){
+                else if (int.TryParse(textBox1.Text, out int control1) || int.TryParse(textBox2.Text, out int control2))
+                {
                     MessageBox.Show("Lütfen alanlara sayı girmeyin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -62,22 +69,39 @@ namespace WinFormsApp1
                 sayac++;
 
                 // Kelime sayısını güncelle
-                label5.Text = "Kelime sayısı: " + sayac ;
+                label5.Text = "Kelime sayısı: " + sayac;
 
 
                 // TextBox'ları temizle
-                    textBox1.Clear();
-                    textBox2.Clear();
-                
+                textBox1.Clear();
+                textBox2.Clear();
+
 
                 // Son kelime girildiyse ve tüm kelimeler tamamlandıysa uyarıyı göster
-               
+
 
                 // Enter tuşunun normal işlevini engelle (yani satır atlamayı engelle)
                 e.SuppressKeyPress = true;
             }
 
-            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {   //kelimeleri elde tutuyoruz
+            var tr = ingkelimeler[ingkelimeler.Count - 1];
+            var ing = türkcekelimeler[ingkelimeler.Count - 1];
+            //kelimeleri çıkarıyoruz
+            ingkelimeler.RemoveAt(ingkelimeler.Count-1);
+            türkcekelimeler.RemoveAt(türkcekelimeler.Count-1);
+
+            label5.Text = "Kelime sayısı: " + (--sayac);
+            MessageBox.Show("Son girdiğiniz kelime ikilisi geri alındı! \n Geri alınan kelimeler: {{"+ tr+" , "+ing+"}}", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (sayac == 0)
+            {
+                button1.Visible = false;
+            }
+
         }
     }
 }

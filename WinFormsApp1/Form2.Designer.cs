@@ -36,6 +36,7 @@
             label5 = new Label();
             label4 = new Label();
             button2 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -112,11 +113,24 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click_1;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.White;
+            button1.Location = new Point(568, 226);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 12;
+            button1.Text = "geri al";
+            button1.UseVisualStyleBackColor = false;
+            button1.Visible = false;
+            button1.Click += button1_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(label4);
             Controls.Add(label5);
@@ -142,5 +156,6 @@
         private Label label5;
         private Label label4;
         private Button button2;
+        private Button button1;
     }
 }
