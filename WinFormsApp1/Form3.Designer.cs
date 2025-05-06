@@ -50,18 +50,17 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(96, 173);
+            label1.Location = new Point(99, 209);
             label1.Name = "label1";
             label1.Size = new Size(160, 28);
             label1.TabIndex = 4;
             label1.Text = "ingilizce kelime :";
-           
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(157, 220);
+            label3.Location = new Point(160, 256);
             label3.Name = "label3";
             label3.Size = new Size(99, 28);
             label3.TabIndex = 5;
@@ -69,7 +68,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(262, 220);
+            textBox1.Location = new Point(265, 256);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(230, 27);
             textBox1.TabIndex = 6;
@@ -77,14 +76,14 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(262, 262);
+            label4.Location = new Point(265, 298);
             label4.Name = "label4";
             label4.Size = new Size(0, 20);
             label4.TabIndex = 7;
             // 
             // button2
             // 
-            button2.Location = new Point(588, 208);
+            button2.Location = new Point(591, 244);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 9;
@@ -96,7 +95,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(799, 371);
+            ClientSize = new Size(799, 452);
             Controls.Add(button2);
             Controls.Add(label4);
             Controls.Add(textBox1);
@@ -106,6 +105,7 @@
             Name = "Form3";
             Text = "KELİMELERİ BUL";
             FormClosing += Form3_FormClosing;
+            Load += Form3_Load;
             ResumeLayout(false);
             PerformLayout();
         }
