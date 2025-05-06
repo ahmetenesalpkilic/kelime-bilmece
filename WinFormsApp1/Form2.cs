@@ -20,7 +20,12 @@ namespace WinFormsApp1
 
         public Form2()
         {
+
             InitializeComponent();
+            button3.Visible = false;
+            label6.Visible = false;
+            textBox3.Visible = false;
+
 
         }
 
@@ -35,9 +40,12 @@ namespace WinFormsApp1
                 MessageBox.Show("Lütfen kelimeleri girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
-            this.Hide();
-            f3.ShowDialog();
+
+            button2.Visible = false;
+            button3.Visible = true;
+            label6.Visible = true;
+            textBox3.Visible = true;
+
 
         }
 
@@ -92,16 +100,39 @@ namespace WinFormsApp1
             var tr = ingkelimeler[ingkelimeler.Count - 1];
             var ing = türkcekelimeler[ingkelimeler.Count - 1];
             //kelimeleri çıkarıyoruz
-            ingkelimeler.RemoveAt(ingkelimeler.Count-1);
-            türkcekelimeler.RemoveAt(türkcekelimeler.Count-1);
+            ingkelimeler.RemoveAt(ingkelimeler.Count - 1);
+            türkcekelimeler.RemoveAt(türkcekelimeler.Count - 1);
 
             label5.Text = "Kelime sayısı: " + (--sayac);
-            MessageBox.Show("Son girdiğiniz kelime ikilisi geri alındı! \n Geri alınan kelimeler: {{"+ tr+" , "+ing+"}}", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Son girdiğiniz kelime ikilisi geri alındı! \n Geri alınan kelimeler: {{" + tr + " , " + ing + "}}", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (sayac == 0)
             {
                 button1.Visible = false;
             }
 
         }
+
+        private void button3_Click(object sender, EventArgs e) //Metin belgesinin kaydolacagı buton
+        {
+            string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string klasorAdi = "Kelimeler_Dosyasi";
+
+            string metinbelgesi=textBox3.Text+".txt";
+
+            string klasoryolu = Path.Combine(masaustuYolu, klasorAdi, metinbelgesi);
+
+            using (StreamWriter sw = new StreamWriter(klasoryolu)) {
+                for(int i=0; i< türkcekelimeler.Count; i++)
+                {
+                    sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
+                }            
+            }
+            Form3 f3 = new Form3(ingkelimeler,türkcekelimeler);
+            this.Hide();
+            f3.ShowDialog();
+
+        }
+
     }
 }

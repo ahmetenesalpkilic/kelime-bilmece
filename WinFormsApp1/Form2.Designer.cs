@@ -37,6 +37,9 @@
             label4 = new Label();
             button2 = new Button();
             button1 = new Button();
+            textBox3 = new TextBox();
+            label6 = new Label();
+            button3 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -125,11 +128,40 @@
             button1.Visible = false;
             button1.Click += button1_Click;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(299, 391);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(200, 27);
+            textBox3.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(281, 430);
+            label6.Name = "label6";
+            label6.Size = new Size(238, 40);
+            label6.TabIndex = 14;
+            label6.Text = "        Kelimelerin kaydolacağı \r\nmetin belgesinin ismini belirleyiniz";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(537, 389);
+            button3.Name = "button3";
+            button3.Size = new Size(205, 29);
+            button3.TabIndex = 15;
+            button3.Text = "kaydet ve devam et";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 515);
+            Controls.Add(button3);
+            Controls.Add(label6);
+            Controls.Add(textBox3);
             Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(label4);
@@ -157,5 +189,8 @@
         private Label label4;
         private Button button2;
         private Button button1;
+        private TextBox textBox3;
+        private Label label6;
+        private Button button3;
     }
 }
