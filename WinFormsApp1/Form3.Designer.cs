@@ -54,17 +54,17 @@
             label1.Name = "label1";
             label1.Size = new Size(160, 28);
             label1.TabIndex = 4;
-            label1.Text = "ingilizce kelime :";
+            label1.Text = "İngilizce kelime :";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(160, 256);
+            label3.Location = new Point(127, 254);
             label3.Name = "label3";
-            label3.Size = new Size(99, 28);
+            label3.Size = new Size(101, 28);
             label3.TabIndex = 5;
-            label3.Text = "türkçesi :";
+            label3.Text = "Türkçesi :";
             // 
             // textBox1
             // 
@@ -72,6 +72,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(230, 27);
             textBox1.TabIndex = 6;
+            textBox1.KeyDown += textBox1_KeyDown;
             // 
             // label4
             // 

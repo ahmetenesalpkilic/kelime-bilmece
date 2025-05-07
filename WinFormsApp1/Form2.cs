@@ -33,7 +33,7 @@ namespace WinFormsApp1
         {
             Application.Exit();
         }
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e) // onayla butonu , tıklayınca kelımeyı girecegin yeri aktif ediyor
         {
             if (türkcekelimeler.Count == 0)
             {
@@ -45,9 +45,9 @@ namespace WinFormsApp1
             button3.Visible = true;
             label6.Visible = true;
             textBox3.Visible = true;
-
-
         }
+
+
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -72,8 +72,8 @@ namespace WinFormsApp1
 
 
                 // Giriş yapılan kelimeleri diziye ekle
-                ingkelimeler.Add(textBox1.Text.Trim());
-                türkcekelimeler.Add(textBox2.Text.Trim());
+                ingkelimeler.Add(textBox1.Text.Trim().ToLower());
+                türkcekelimeler.Add(textBox2.Text.Trim().ToLower());
                 sayac++;
 
                 // Kelime sayısını güncelle
@@ -90,6 +90,11 @@ namespace WinFormsApp1
 
                 // Enter tuşunun normal işlevini engelle (yani satır atlamayı engelle)
                 e.SuppressKeyPress = true;
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    textBox1.Focus();
+                }
             }
 
 
@@ -118,21 +123,30 @@ namespace WinFormsApp1
 
             string klasorAdi = "Kelimeler_Dosyasi";
 
-            string metinbelgesi=textBox3.Text+".txt";
+            string metinbelgesi = textBox3.Text + ".txt";
 
             string klasoryolu = Path.Combine(masaustuYolu, klasorAdi, metinbelgesi);
 
-            using (StreamWriter sw = new StreamWriter(klasoryolu)) {
-                for(int i=0; i< türkcekelimeler.Count; i++)
+            using (StreamWriter sw = new StreamWriter(klasoryolu))
+            {
+                for (int i = 0; i < türkcekelimeler.Count; i++)
                 {
                     sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
-                }            
+                }
             }
-            Form3 f3 = new Form3(ingkelimeler,türkcekelimeler);
+            Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
             this.Hide();
             f3.ShowDialog();
 
         }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) //ingilizcesini girdikten sonra, alttaki textboxa yazma eventi başlar
+            {
+                e.SuppressKeyPress = true;
+                textBox2.Focus();
+            }
+        }
     }
 }
