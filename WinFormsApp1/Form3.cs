@@ -93,6 +93,7 @@ namespace WinFormsApp1
 
 
 
+
             if (puan >= 70) //kelime kontrol bloğu
             {
                 SystemSounds.Asterisk.Play();
