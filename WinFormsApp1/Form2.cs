@@ -69,7 +69,7 @@ namespace WinFormsApp1
                 }
 
                 // Kelime ekleme işlemine başla
-
+                 
 
                 // Giriş yapılan kelimeleri diziye ekle
                 ingkelimeler.Add(textBox1.Text.Trim().ToLower());
