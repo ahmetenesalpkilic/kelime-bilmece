@@ -30,7 +30,7 @@ namespace WinFormsApp1
 
             this.ingkelimeler = ingkelimeler;
             this.türkceleri = türkceleri;
-
+     
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
         }
@@ -129,10 +129,10 @@ namespace WinFormsApp1
 
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
-        
+
         private void Form3_Load(object sender, EventArgs e) { }
 
-       
+
 
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e) // textboxta enter'a==button
@@ -146,6 +146,33 @@ namespace WinFormsApp1
                 button2.PerformClick(); // Butonun Click olayını tetikler
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e) // Değiştir adlı buton
+        {
+
+            // Mevcut kelimeyi sona ekle
+            ingkelimeler.Add(ingkelimeler[randsayac[sayac]]);
+            türkceleri.Add(türkceleri[randsayac[sayac]]);
+
+            // Yeni kelimenin indeksini rastsal sıraya ekle
+            randsayac.Add(ingkelimeler.Count - 1);
+
+            // Sonraki soruya geç
+            sayac++;
+
+            // Eğer hala kelime kaldıysa yeni soruyu göster
+            if (sayac < randsayac.Count)
+            {
+                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                textBox1.Clear();
+                label4.Text = "";
+            }
+            else
+            {
+                label1.Text = "Kelime kalmadı.";
+                button2.Enabled = false;
+            }
         }
     }
 

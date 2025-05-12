@@ -34,6 +34,7 @@
             textBox1 = new TextBox();
             label4 = new Label();
             button2 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label2
@@ -92,11 +93,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(591, 291);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 10;
+            button1.Text = "Değiştir";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(799, 452);
+            Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(label4);
             Controls.Add(textBox1);
@@ -119,5 +131,6 @@
         private TextBox textBox1;
         private Label label4;
         private Button button2;
+        private Button button1;
     }
 }
