@@ -40,6 +40,7 @@
             textBox3 = new TextBox();
             label6 = new Label();
             button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -155,11 +156,24 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.BackColor = SystemColors.ButtonFace;
+            button4.ForeColor = SystemColors.ActiveCaptionText;
+            button4.Location = new Point(8, 12);
+            button4.Name = "button4";
+            button4.Size = new Size(178, 29);
+            button4.TabIndex = 16;
+            button4.Text = "🠔 Bir Önceki Sayfa";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 515);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label6);
             Controls.Add(textBox3);
@@ -193,5 +207,6 @@
         private TextBox textBox3;
         private Label label6;
         private Button button3;
+        private Button button4;
     }
 }

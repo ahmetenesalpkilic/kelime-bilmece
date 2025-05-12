@@ -69,7 +69,7 @@ namespace WinFormsApp1
                 }
 
                 // Kelime ekleme işlemine başla
-                 
+
 
                 // Giriş yapılan kelimeleri diziye ekle
                 ingkelimeler.Add(textBox1.Text.Trim().ToLower());
@@ -132,7 +132,7 @@ namespace WinFormsApp1
 
 
 
-            string []files=Directory.GetFiles(klasoryolu,$"*{metinbelgesi}*");
+            string[] files = Directory.GetFiles(klasoryolu, $"*{metinbelgesi}*");
 
 
 
@@ -141,17 +141,18 @@ namespace WinFormsApp1
                 MessageBox.Show("Girdiiğiniz isimli metin belgesi bulunuyor tekrar deneyin", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
-            else { 
-            using (StreamWriter sw = new StreamWriter(Ydosyayolu))
+            else
             {
-                for (int i = 0; i < türkcekelimeler.Count; i++)
+                using (StreamWriter sw = new StreamWriter(Ydosyayolu))
                 {
-                    sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
+                    for (int i = 0; i < türkcekelimeler.Count; i++)
+                    {
+                        sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
+                    }
                 }
-            }
-            Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
-            this.Hide();
-            f3.ShowDialog();
+                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
+                this.Hide();
+                f3.ShowDialog();
             }
         }
 
@@ -162,6 +163,14 @@ namespace WinFormsApp1
                 e.SuppressKeyPress = true;
                 textBox2.Focus();
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            this.Hide();
+            f1.ShowDialog();
+            
         }
     }
 }
