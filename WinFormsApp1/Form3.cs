@@ -94,7 +94,7 @@ namespace WinFormsApp1
 
 
 
-            if (puan >= 70) //kelime kontrol bloğu
+            if (puan >= 65) //kelime kontrol bloğu
             {
                 SystemSounds.Asterisk.Play();
                 label4.Text = "✅ Doğru bildin!";

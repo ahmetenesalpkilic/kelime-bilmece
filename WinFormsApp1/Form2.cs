@@ -125,9 +125,24 @@ namespace WinFormsApp1
 
             string metinbelgesi = textBox3.Text + ".txt";
 
-            string klasoryolu = Path.Combine(masaustuYolu, klasorAdi, metinbelgesi);
+            string Ydosyayolu = Path.Combine(masaustuYolu, klasorAdi, metinbelgesi);//yazılacak metın belgesının yol
 
-            using (StreamWriter sw = new StreamWriter(klasoryolu))
+            string klasoryolu = Path.Combine(masaustuYolu, klasorAdi);// Kelımeler Dosyasının yolu
+
+
+
+
+            string []files=Directory.GetFiles(klasoryolu,$"*{metinbelgesi}*");
+
+
+
+            if (files.Contains(Ydosyayolu)) // eger bu dosya yollu bır uzantı varsa pop up cıkart
+            {
+                MessageBox.Show("Girdiiğiniz isimli metin belgesi bulunuyor tekrar deneyin", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            else { 
+            using (StreamWriter sw = new StreamWriter(Ydosyayolu))
             {
                 for (int i = 0; i < türkcekelimeler.Count; i++)
                 {
@@ -137,7 +152,7 @@ namespace WinFormsApp1
             Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
             this.Hide();
             f3.ShowDialog();
-
+            }
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
