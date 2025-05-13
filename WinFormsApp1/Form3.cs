@@ -30,13 +30,14 @@ namespace WinFormsApp1
 
             this.ingkelimeler = ingkelimeler;
             this.türkceleri = türkceleri;
-     
+
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            checkBox1.Checked = false; // yeni kelime geleceği zaman türkçesini gör butonu  kaldırılır
             if (tıklama)
             {
                 // İlk tıklamada sadece İngilizce kelimeyi göster
@@ -53,10 +54,12 @@ namespace WinFormsApp1
                 return;
             }
 
+
+
             string yazılan = textBox1.Text.Trim().ToLower();
             string dogruCevap = türkceleri[randsayac[sayac]];
 
-
+            if (yazılan == "") { MessageBox.Show("Boşluk Girmeyiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
 
             //fuzzy logic (bulanık mantık) ile kontrol yapacağız ----------------------------------------------
@@ -150,6 +153,7 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e) // Değiştir adlı buton
         {
+            checkBox1.Checked = false; // yeni kelime geleceği zaman türkçesini gör butonu  kaldırılır
 
             // Mevcut kelimeyi sona ekle
             ingkelimeler.Add(ingkelimeler[randsayac[sayac]]);
@@ -172,6 +176,19 @@ namespace WinFormsApp1
             {
                 label1.Text = "Kelime kalmadı.";
                 button2.Enabled = false;
+            }
+        }
+
+   
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]] + " (" + türkceleri[randsayac[sayac]] + ")";
+            }
+            else
+            {
+                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
             }
         }
     }
