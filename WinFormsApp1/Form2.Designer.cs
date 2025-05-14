@@ -41,6 +41,9 @@
             label6 = new Label();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
+            label7 = new Label();
+            label8 = new Label();
             SuspendLayout();
             // 
             // textBox1
@@ -93,11 +96,11 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Coolvetica Rg", 11.2000008F);
-            label5.Location = new Point(548, 190);
+            label5.Location = new Point(525, 185);
             label5.Name = "label5";
-            label5.Size = new Size(134, 23);
+            label5.Size = new Size(200, 23);
             label5.TabIndex = 9;
-            label5.Text = "Kelime sayısı : 0";
+            label5.Text = "Eklenen kelime sayısı : 0";
             // 
             // label4
             // 
@@ -110,7 +113,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(354, 352);
+            button2.Location = new Point(354, 346);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 11;
@@ -140,7 +143,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(281, 430);
+            label6.Location = new Point(286, 431);
             label6.Name = "label6";
             label6.Size = new Size(238, 40);
             label6.TabIndex = 14;
@@ -148,7 +151,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(537, 389);
+            button3.Location = new Point(539, 391);
             button3.Name = "button3";
             button3.Size = new Size(205, 29);
             button3.TabIndex = 15;
@@ -168,11 +171,43 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
+            // button5
+            // 
+            button5.Location = new Point(41, 390);
+            button5.Name = "button5";
+            button5.Size = new Size(204, 29);
+            button5.TabIndex = 17;
+            button5.Text = "Metin Belgesi Seç";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(48, 427);
+            label7.Name = "label7";
+            label7.Size = new Size(192, 40);
+            label7.TabIndex = 18;
+            label7.Text = "Bir metin belgesinin üstüne \r\n      yazmak için tıklayın!";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = SystemColors.ControlDarkDark;
+            label8.Location = new Point(12, 44);
+            label8.Name = "label8";
+            label8.Size = new Size(317, 20);
+            label8.TabIndex = 19;
+            label8.Text = "Şu anda bir metin belgesi üstüne yazıyorsunuz!\r\n";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 515);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label6);
@@ -208,5 +243,8 @@
         private Label label6;
         private Button button3;
         private Button button4;
+        private Button button5;
+        private Label label7;
+        private Label label8;
     }
 }
