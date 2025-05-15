@@ -33,6 +33,8 @@ namespace WinFormsApp1
 
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
+
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

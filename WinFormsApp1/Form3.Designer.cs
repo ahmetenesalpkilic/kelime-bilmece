@@ -129,6 +129,7 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Name = "Form3";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "KELİMELERİ BUL";
             FormClosing += Form3_FormClosing;
             Load += Form3_Load;

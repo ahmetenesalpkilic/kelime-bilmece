@@ -1,5 +1,8 @@
 using System.IO;  // StreamReader ve File için
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace WinFormsApp1
 {
@@ -16,10 +19,84 @@ namespace WinFormsApp1
             ingkelimeler = new List<string>();
             türkceleri = new List<string>();
 
-         
+            // Form yüklendiðinde otomatik olarak dosyalarý indirip kaydedecek
+            this.Load += async (s, e) => await DownloadMultipleFilesAsync();
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        //Aþaðýdaki metot verilen URL'ler üzerinden indirme yapýp Kelimeler_Dosyasi'nin içine atar
+        private async Task DownloadMultipleFilesAsync() 
+        {
+            string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //masaüstü yolu
+
+            string klasorAdi = "Kelimeler_Dosyasi";
+
+            string klasorYolu = Path.Combine(masaustuYolu, klasorAdi); //klasörün tam yolunu oluþturuyoruz1
+
+            string[] metinbelgesiadlari = {"a1_kelimeler", "a2_kelimeler", "b1_kelimeler", "b2_kelimeler",
+            "c1_kelimeler","c2_kelimeler"};
+            //metin belgelerine verilecek adlar
+
+            if (!Directory.Exists(klasorYolu))//Dosya yoksa olusturuyoruz
+            {
+                Directory.CreateDirectory(klasorYolu); 
+            }
+
+
+            List<string> urls = new List<string>()
+            {
+               "https://drive.usercontent.google.com/u/0/uc?id=1qVYkQxtpV6AvejdIetNqC9FGZVrUS-cT&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=16vRL1Tk0Eexw6ejIPidMzD3cKWnJJ6sQ&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1uhuEYC54J7Q9DqR1y44x4AAaRpbbemBd&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1ptPYc5rhvSn2hBLznCcKkWbfOdp9jdp9&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1672F54o5EDHpcYgF9cDbPC5rDshzZjIx&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1EyQe-si_mFTmKkCnOsPaz1BkxymP9LWy&export=download"
+
+            };
+
+
+            // HttpClient nesnesini oluþturuyoruz (internet üzerinden dosya indirmek için)
+            using (HttpClient client = new HttpClient())
+            {
+                // Döngü ile tüm linkleri tek tek indiriyoruz
+                for (int i = 0; i < urls.Count; i++)
+                {
+                    // Kaydedilecek dosya adý: default1.txt, default2.txt, vb.
+                    string dosyaAdi = metinbelgesiadlari[i]+".txt";
+
+                    // Dosyanýn tam kaydedileceði yol
+                    string hedefDosya = Path.Combine(klasorYolu, dosyaAdi);
+
+
+                    // Dosya zaten varsa indirmeye gerek yok
+                    if (!File.Exists(hedefDosya))
+                    {
+                        try
+                        {
+                            // Dosyayý byte dizisi olarak indiriyoruz
+                            var content = await client.GetByteArrayAsync(urls[i]);
+
+                            // Ýndirilen dosyayý diske yazýyoruz
+                            File.WriteAllBytes(hedefDosya, content);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Eðer indirme sýrasýnda hata olursa kullanýcýya bildiriyoruz
+                            MessageBox.Show($"{dosyaAdi} indirilemedi: " + ex.Message);
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)//onayla
         {
 
             string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -49,7 +126,10 @@ namespace WinFormsApp1
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+
+
+        private void button2_Click(object sender, EventArgs e) //Metin belgesi seçme butonu
         {
             // Dosya seçici penceresini oluþturuyoruz   
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -102,6 +182,9 @@ namespace WinFormsApp1
             }
             //button2.Visible = false;
         }
+
+
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -48,7 +48,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(354, 160);
+            textBox1.Location = new Point(494, 222);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Coolvetica Rg", 33F);
-            label2.Location = new Point(156, 54);
+            label2.Location = new Point(277, 70);
             label2.Name = "label2";
             label2.Size = new Size(495, 66);
             label2.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(185, 160);
+            label1.Location = new Point(325, 222);
             label1.Name = "label1";
             label1.Size = new Size(154, 28);
             label1.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(156, 225);
+            label3.Location = new Point(296, 287);
             label3.Name = "label3";
             label3.Size = new Size(192, 28);
             label3.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(354, 226);
+            textBox2.Location = new Point(494, 288);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Coolvetica Rg", 11.2000008F);
-            label5.Location = new Point(525, 185);
+            label5.Location = new Point(665, 247);
             label5.Name = "label5";
             label5.Size = new Size(200, 23);
             label5.TabIndex = 9;
@@ -105,7 +105,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(179, 282);
+            label4.Location = new Point(325, 370);
             label4.Name = "label4";
             label4.Size = new Size(472, 40);
             label4.TabIndex = 10;
@@ -113,7 +113,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(354, 346);
+            button2.Location = new Point(494, 448);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 11;
@@ -124,7 +124,7 @@
             // button1
             // 
             button1.BackColor = Color.White;
-            button1.Location = new Point(568, 226);
+            button1.Location = new Point(708, 288);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 12;
@@ -135,7 +135,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(299, 391);
+            textBox3.Location = new Point(444, 501);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(200, 27);
             textBox3.TabIndex = 13;
@@ -143,7 +143,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(286, 431);
+            label6.Location = new Point(431, 541);
             label6.Name = "label6";
             label6.Size = new Size(238, 40);
             label6.TabIndex = 14;
@@ -151,7 +151,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(539, 391);
+            button3.Location = new Point(684, 501);
             button3.Name = "button3";
             button3.Size = new Size(205, 29);
             button3.TabIndex = 15;
@@ -173,7 +173,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(41, 390);
+            button5.Location = new Point(186, 500);
             button5.Name = "button5";
             button5.Size = new Size(204, 29);
             button5.TabIndex = 17;
@@ -184,7 +184,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(48, 427);
+            label7.Location = new Point(193, 537);
             label7.Name = "label7";
             label7.Size = new Size(192, 40);
             label7.TabIndex = 18;
@@ -194,7 +194,7 @@
             // 
             label8.AutoSize = true;
             label8.ForeColor = SystemColors.ControlDarkDark;
-            label8.Location = new Point(12, 44);
+            label8.Location = new Point(44, 136);
             label8.Name = "label8";
             label8.Size = new Size(317, 20);
             label8.TabIndex = 19;
@@ -204,7 +204,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 515);
+            ClientSize = new Size(1046, 690);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(button5);
@@ -222,6 +222,7 @@
             Controls.Add(label2);
             Controls.Add(textBox1);
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kelimeleri belirle";
             FormClosing += Form2_FormClosing;
             ResumeLayout(false);

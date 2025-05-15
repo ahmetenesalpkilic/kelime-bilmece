@@ -38,7 +38,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Coolvetica Rg", 33F);
-            label1.Location = new Point(231, 38);
+            label1.Location = new Point(241, 75);
             label1.Name = "label1";
             label1.Size = new Size(336, 66);
             label1.TabIndex = 1;
@@ -48,7 +48,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(212, 149);
+            label2.Location = new Point(219, 208);
             label2.Name = "label2";
             label2.Size = new Size(383, 56);
             label2.TabIndex = 2;
@@ -56,7 +56,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(324, 224);
+            button1.Location = new Point(331, 318);
             button1.Name = "button1";
             button1.Size = new Size(146, 57);
             button1.TabIndex = 5;
@@ -66,7 +66,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(301, 300);
+            button2.Location = new Point(306, 407);
             button2.Name = "button2";
             button2.Size = new Size(205, 29);
             button2.TabIndex = 6;
@@ -78,12 +78,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 420);
+            ClientSize = new Size(835, 543);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kelime Bilmece";
             FormClosing += Form1_FormClosing;
             ResumeLayout(false);
