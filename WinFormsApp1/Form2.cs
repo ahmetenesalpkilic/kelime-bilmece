@@ -96,10 +96,17 @@ namespace WinFormsApp1
                 // Kelime ekleme işlemine başla
 
 
-                // Giriş yapılan kelimeleri diziye ekle
+                // Giriş yapılan kelimeleri diziye eklemeden önce dizide var mı kontrol et
+                if(!ingkelimeler.Contains(textBox1.Text.Trim().ToLower()))
+                { //dizide yoksa ekle
                 ingkelimeler.Add(textBox1.Text.Trim().ToLower());
                 türkcekelimeler.Add(textBox2.Text.Trim().ToLower());
                 sayac++;
+                }
+                else {
+                MessageBox.Show("Bu kelime daha önce girilmiş, tekrar dene.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);;
+                    return;
+                }//dizide varsa uyar
 
                 // Kelime sayısını güncelle
                 label5.Text = "Eklenen kelime sayısı: " + sayac;

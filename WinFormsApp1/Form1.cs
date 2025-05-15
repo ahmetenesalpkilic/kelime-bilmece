@@ -15,6 +15,8 @@ namespace WinFormsApp1
             InitializeComponent();
             ingkelimeler = new List<string>();
             türkceleri = new List<string>();
+
+         
         }
 
         private void button1_Click(object sender, EventArgs e)
