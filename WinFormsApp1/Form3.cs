@@ -10,8 +10,9 @@
     using System.Media;
     using WMPLib;
     using DuoVia.FuzzyStrings;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+    using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+    using Microsoft.VisualBasic.Devices;
+    using NAudio.Wave;
 
 namespace WinFormsApp1
     {
@@ -61,6 +62,7 @@ namespace WinFormsApp1
             string yazılan = textBox1.Text.Trim().ToLower();
             string dogruCevap = türkceleri[randsayac[sayac]];
 
+            //boşluk girildiyse uyarı ver
             if (yazılan == "") { MessageBox.Show("Boşluk Girmeyiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
 
@@ -101,7 +103,19 @@ namespace WinFormsApp1
 
             if (puan >= 65) //kelime kontrol bloğu
             {
-                SystemSounds.Asterisk.Play();
+                string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string klasoradi = "Kelimeler_Dosyasi";
+                string dosyaadi = "Sound_Effects";
+                string secilecekdosya = "CorrectSound.mp3";
+
+                string yol = Path.Combine(masaustuYolu, klasoradi, dosyaadi, secilecekdosya);
+
+                WindowsMediaPlayer player = new WindowsMediaPlayer();
+                player.settings.volume = 25;
+                player.URL = yol; // MP3 dosya yolunu buraya yaz
+                player.controls.play();
+
+
                 label4.Text = "✅ Doğru bildin!";
                 sayac++;
                 textBox1.Clear();
@@ -113,9 +127,7 @@ namespace WinFormsApp1
                 }
                 else //soracak kelime kalmadıysa --> tüm kelimeleri bilindi..
                 {
-                    //  WindowsMediaPlayer player = new WindowsMediaPlayer();
-                    // player.URL = "C:\\Users\\ahmet\\Videos\\4K Video Downloader+\\senmisin.mp3"; // MP3 dosya yolunu buraya yaz
-                    //  player.controls.play();
+                     ;
 
                     label1.Text = "İngilizce kelime";
                     label4.Text = "🎉 Tüm kelimeleri bildin, tebrikler!";

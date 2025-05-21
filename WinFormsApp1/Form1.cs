@@ -22,6 +22,8 @@ namespace WinFormsApp1
             // Form yüklendiðinde otomatik olarak dosyalarý indirip kaydedecek
             this.Load += async (s, e) => await DownloadMultipleFilesAsync();
 
+            this.Load += async (s, e) => await DownloadSoundEffectsFilesAsync();
+
         }
 
 
@@ -48,8 +50,8 @@ namespace WinFormsApp1
             {
                "https://drive.usercontent.google.com/u/0/uc?id=1qVYkQxtpV6AvejdIetNqC9FGZVrUS-cT&export=download",
                "https://drive.usercontent.google.com/u/0/uc?id=16vRL1Tk0Eexw6ejIPidMzD3cKWnJJ6sQ&export=download",
-               "https://drive.usercontent.google.com/u/0/uc?id=1uhuEYC54J7Q9DqR1y44x4AAaRpbbemBd&export=download",
-               "https://drive.usercontent.google.com/u/0/uc?id=1ptPYc5rhvSn2hBLznCcKkWbfOdp9jdp9&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1esgw3u2W0UECrS_tahKSCzZd_sL8jvX8&export=download",
+               "https://drive.usercontent.google.com/u/0/uc?id=1UTmTibjSTSAGy7qjGoqul_I964fLrSY9&export=download",
                "https://drive.usercontent.google.com/u/0/uc?id=1672F54o5EDHpcYgF9cDbPC5rDshzZjIx&export=download",
                "https://drive.usercontent.google.com/u/0/uc?id=1EyQe-si_mFTmKkCnOsPaz1BkxymP9LWy&export=download"
 
@@ -85,15 +87,72 @@ namespace WinFormsApp1
                             // Eðer indirme sýrasýnda hata olursa kullanýcýya bildiriyoruz
                             MessageBox.Show($"{dosyaAdi} indirilemedi: " + ex.Message);
                         }
-                    }
+                    } 
+
+                }  } }
 
 
-                }
+
+        //Sound Effect'leri indiren metod
+
+        private async Task DownloadSoundEffectsFilesAsync()
+        {
+
+            string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //masaüstü yolu
+
+            string klasorAdi = "Kelimeler_Dosyasi";
+
+            string sesEfektleri = "Sound_Effects";
+
+            string klasorYolu = Path.Combine(masaustuYolu, klasorAdi, sesEfektleri); //klasörün tam yolunu oluþturuyoruz
+
+            string[] sesefektleri = { "CorrectSound.mp3" };
+
+
+            if (!Directory.Exists(klasorYolu)) //"Sound_Effects" adlý klasör yoksa oluþtur
+            {
+                Directory.CreateDirectory(klasorYolu);
             }
 
+            List<string> urls = new List<string>() {
+            "https://drive.usercontent.google.com/u/0/uc?id=1w1QScq90_fCukrlY8an2a04SGo5KDLw5&export=download"
+            };
+
+            // HttpClient nesnesini oluþturuyoruz (internet üzerinden dosya indirmek için)
+            using (HttpClient client = new HttpClient())
+            {
+                for (int i = 0; i < urls.Count; i++) //Linklerden teker teker indirmeler yapýlýr
+                {
+                    string dosyaadi = sesefektleri[i]; //dosya adlarýný giriyoruz
+
+                    string dosyayolu = Path.Combine(klasorYolu, dosyaadi);// indirilecek dosyanýn , dosya yolunu girdik
+
+                    if (!Directory.Exists(dosyayolu))
+                    {
+                        try { 
+                            var content=await client.GetByteArrayAsync(urls[i]); //urldekini byte byte indiriyouz
+
+                            File.WriteAllBytes(dosyayolu,content); //dosyayý yazýyoruz(dosyanýnyolu,bytelar)
+                        
+                        }
+                        catch(Exception ex) {
+                            // Eðer indirme sýrasýnda hata olursa kullanýcýya bildiriyoruz
+                            MessageBox.Show($"{dosyaadi} indirilemedi: " + ex.Message);
+                        }
+                    }
+
+                }
 
 
+            }
         }
+
+
+
+
+
+
+
 
 
         private void button1_Click(object sender, EventArgs e)//onayla

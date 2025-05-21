@@ -45,6 +45,8 @@ namespace WinFormsApp1
                 MessageBox.Show("Lütfen kelimeleri girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            button5.Visible = false;
+            label7.Visible = false;
 
             if (metinbelgesiüstüneyazmak) // metin belgesinin üstüne yazma butonu aktif ise
             {
@@ -170,12 +172,16 @@ namespace WinFormsApp1
             string[] files = Directory.GetFiles(klasoryolu, $"*{metinbelgesi}*");
 
 
-
+            if (metinbelgesi == ".txt")
+            {
+                MessageBox.Show("Lütfen Bir isim giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (files.Contains(Ydosyayolu)) // eger bu dosya yollu bır uzantı varsa pop up cıkart
             {
-                MessageBox.Show("Girdiiğiniz isimli metin belgesi bulunuyor tekrar deneyin", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                MessageBox.Show("Girdiğiniz isimli metin belgesi bulunuyor tekrar deneyin", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
