@@ -35,8 +35,17 @@ namespace WinFormsApp1
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
 
-            
+
         }
+
+
+
+      /*  private void metinbelgesineyaz()
+        {
+
+
+
+        }*/
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -127,7 +136,7 @@ namespace WinFormsApp1
                 }
                 else //soracak kelime kalmadıysa --> tüm kelimeleri bilindi..
                 {
-                     ;
+                    ;
 
                     label1.Text = "İngilizce kelime";
                     label4.Text = "🎉 Tüm kelimeleri bildin, tebrikler!";
@@ -193,7 +202,7 @@ namespace WinFormsApp1
             }
         }
 
-   
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
@@ -203,6 +212,32 @@ namespace WinFormsApp1
             else
             {
                 label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+            }
+        }
+
+
+
+        private void button3_Click(object sender, EventArgs e) // Kelime Sil butonu
+        {
+            DialogResult cevap=MessageBox.Show("Silmek istediğinize emin misiniz?", "Uyarı", MessageBoxButtons.YesNo);
+
+            if (cevap == DialogResult.Yes)
+            {
+                // Evet'e basıldıysa burası çalışır
+                // Silme işlemi vs burada yapılır
+                int index = randsayac[sayac];
+
+                ingkelimeler.RemoveAt(index);
+                türkceleri.RemoveAt(index);
+
+                randsayac.RemoveAt(sayac); // randsayac listesinden de o sıradaki index'i kaldırdık Çünkü o sıra artık işe yaramayacak.
+                MessageBox.Show("Silme işlemi başarılı.");
+                label1.Text="İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+            }
+            else
+            {
+                // Hayır'a basıldıysa hiçbir şey yapma ya da istersen iptal mesajı ver
+                MessageBox.Show("Silme işlemi iptal edildi.");
             }
         }
     }

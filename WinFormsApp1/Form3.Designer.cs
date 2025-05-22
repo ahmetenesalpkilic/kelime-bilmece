@@ -36,13 +36,15 @@
             button2 = new Button();
             button1 = new Button();
             checkBox1 = new CheckBox();
+            button3 = new Button();
+            label5 = new Label();
             SuspendLayout();
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Coolvetica Rg", 33F);
-            label2.Location = new Point(190, 24);
+            label2.Location = new Point(256, 34);
             label2.Name = "label2";
             label2.Size = new Size(399, 66);
             label2.TabIndex = 3;
@@ -52,7 +54,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(99, 209);
+            label1.Location = new Point(152, 244);
             label1.Name = "label1";
             label1.Size = new Size(160, 28);
             label1.TabIndex = 4;
@@ -62,7 +64,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Coolvetica Rg", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(127, 254);
+            label3.Location = new Point(180, 289);
             label3.Name = "label3";
             label3.Size = new Size(101, 28);
             label3.TabIndex = 5;
@@ -70,7 +72,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(265, 256);
+            textBox1.Location = new Point(318, 291);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(230, 27);
             textBox1.TabIndex = 6;
@@ -79,14 +81,14 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(265, 298);
+            label4.Location = new Point(318, 333);
             label4.Name = "label4";
             label4.Size = new Size(0, 20);
             label4.TabIndex = 7;
             // 
             // button2
             // 
-            button2.Location = new Point(594, 270);
+            button2.Location = new Point(706, 291);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 9;
@@ -96,7 +98,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(594, 317);
+            button1.Location = new Point(706, 338);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 10;
@@ -107,7 +109,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(501, 226);
+            checkBox1.Location = new Point(554, 261);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(123, 24);
             checkBox1.TabIndex = 12;
@@ -115,11 +117,32 @@
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // button3
+            // 
+            button3.Location = new Point(707, 413);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 13;
+            button3.Text = "Kelime Sil";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(656, 445);
+            label5.Name = "label5";
+            label5.Size = new Size(206, 40);
+            label5.TabIndex = 14;
+            label5.Text = "     Eğer kelimeyi listeden \r\nkaldırmak istiyorsanız tıklayın!";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(799, 452);
+            ClientSize = new Size(888, 560);
+            Controls.Add(label5);
+            Controls.Add(button3);
             Controls.Add(checkBox1);
             Controls.Add(button1);
             Controls.Add(button2);
@@ -147,5 +170,7 @@
         private Button button2;
         private Button button1;
         private CheckBox checkBox1;
+        private Button button3;
+        private Label label5;
     }
 }
