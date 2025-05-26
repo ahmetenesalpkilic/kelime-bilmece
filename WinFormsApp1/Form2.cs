@@ -19,6 +19,7 @@ namespace WinFormsApp1
         int sayac = 0;
         bool metinbelgesiüstüneyazmak = false;
         string Ydosyayolu;
+        string metinbelgesi;
 
         public Form2()
         {
@@ -34,47 +35,69 @@ namespace WinFormsApp1
 
         }
 
+
+
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-        private void button2_Click_1(object sender, EventArgs e) // onayla butonu , tıklayınca kelımeyı girecegin yeri aktif ediyor(metin belgesi seçili değilse)
+
+
+
+        private void button2_Click_1(object sender, EventArgs e) // Onayla butonu
         {
             if (türkcekelimeler.Count == 0)
             {
-                MessageBox.Show("Lütfen kelimeleri girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen kelimeleri girin veya dosya seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             button5.Visible = false;
             label7.Visible = false;
 
-            if (metinbelgesiüstüneyazmak) // metin belgesinin üstüne yazma butonu aktif ise
+            if (metinbelgesiüstüneyazmak) // Dosyanın üstüne yazma seçiliyse
             {
-                //File.AppendText dosyanın üzerine yazmak için var
-                using (StreamWriter sw = File.AppendText(Ydosyayolu))//metin belgesinin üstüne yazma işlemi
+                if (string.IsNullOrEmpty(Ydosyayolu) || !File.Exists(Ydosyayolu))
                 {
-                    for (int i = 0; i < türkcekelimeler.Count; i++)
-                    {
-                        sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
-                    }
+                    MessageBox.Show("Lütfen önce bir dosya seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-
-                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
-                this.Hide();
-                f3.ShowDialog();
-
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(Ydosyayolu))
+                    {
+                        for (int i = 0; i < türkcekelimeler.Count; i++)
+                        {
+                            sw.WriteLine(ingkelimeler[i] + ":" + türkcekelimeler[i]);
+                        }
+                    }
+                    Form3 f3 = new Form3(ingkelimeler, türkcekelimeler); // metinbelgesi yerine Ydosyayolu
+                    this.Hide();
+                    f3.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dosyaya yazılırken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else //metin belgesinin üstüne yazma butonu aktif değilse
+            else // Dosya üstüne yazma değilse (yeni dosya kaydetme)
             {
-            button2.Visible = false;
-            button3.Visible = true;
-            label6.Visible = true;
-            textBox3.Visible = true;
+                button2.Visible = false;
+                button3.Visible = true;
+                label6.Visible = true;
+                textBox3.Visible = true;
 
+                if (string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    MessageBox.Show("Lütfen önce dosya adını girin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-           
         }
+
+
+
 
 
 
@@ -136,6 +159,10 @@ namespace WinFormsApp1
 
         }
 
+
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {   //kelimeleri elde tutuyoruz
             var tr = ingkelimeler[ingkelimeler.Count - 1];
@@ -144,7 +171,7 @@ namespace WinFormsApp1
             ingkelimeler.RemoveAt(ingkelimeler.Count - 1);
             türkcekelimeler.RemoveAt(türkcekelimeler.Count - 1);
 
-            label5.Text = "Kelime sayısı: " + (--sayac);
+            label5.Text = "Eklenen kelime sayısı: " + (--sayac);
             MessageBox.Show("Son girdiğiniz kelime ikilisi geri alındı! \n Geri alınan kelimeler: {{" + tr + " , " + ing + "}}", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (sayac == 0)
             {
@@ -157,13 +184,14 @@ namespace WinFormsApp1
 
 
 
+
         private void button3_Click(object sender, EventArgs e) //Metin belgesinin kaydolacagı buton
         {
             string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             string klasorAdi = "Kelimeler_Dosyasi";
 
-            string metinbelgesi = textBox3.Text + ".txt";
+            metinbelgesi = textBox3.Text + ".txt";
 
             string Ydosyayolu = Path.Combine(masaustuYolu, klasorAdi, metinbelgesi);//yazılacak metın belgesının yol
 
@@ -192,12 +220,13 @@ namespace WinFormsApp1
                         sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
                     }
                 }
-                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler);
+                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler); // metinbelgesi yerine Ydosyayolu
                 this.Hide();
                 f3.ShowDialog();
-                
             }
         }
+
+
 
 
 
@@ -216,6 +245,7 @@ namespace WinFormsApp1
 
 
 
+
         private void button4_Click(object sender, EventArgs e)
         {
             Form1 f1 = new Form1();
@@ -226,67 +256,60 @@ namespace WinFormsApp1
 
 
 
-        private void button5_Click(object sender, EventArgs e) // metin belgesinin üstüne yazmak için
+
+        private void button5_Click(object sender, EventArgs e) // Metin belgesi seçme butonu
         {
-            // Kullanıcının metin belgesi üzerine yazmak istediğini belirten bayrağı true yapıyoruz
-            metinbelgesiüstüneyazmak = true;
+            metinbelgesiüstüneyazmak = true; // Dosyanın üstüne yazma modu aktif
 
-            label8.Visible = true; // Bilgilendirici metini aktif ediyoruz 
+            label8.Visible = true; // Bilgilendirici etiketi aç
 
-            // Masaüstü yolunu alıyoruz
             string masaustuYolu = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            // Kelime dosyalarının bulunduğu klasör adı
             string klasorAdi = "Kelimeler_Dosyasi";
-
-            // Klasörün tam yolu
             string klasorYolu = Path.Combine(masaustuYolu, klasorAdi);
 
-            // OpenFileDialog nesnesi ile dosya seçici ekranı oluşturuyoruz
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            // Başlangıç olarak kullanıcıya "Kelimeler_Dosyasi" klasörünü açtırıyoruz
             openFileDialog.InitialDirectory = klasorYolu;
-
-            // Sadece .txt uzantılı dosyaları göstersin
             openFileDialog.Filter = "Metin Dosyaları (*.txt)|*.txt";
-
-            // Pencere başlığı
             openFileDialog.Title = "Bir metin dosyası seçin";
 
-            // Kullanıcı dosya seçerse işleme devam et
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Seçilen dosyanın tam yolunu al
-                 Ydosyayolu = openFileDialog.FileName;
+                Ydosyayolu = openFileDialog.FileName;  // Global dosya yolunu set et
+                metinbelgesi = Path.GetFileName(openFileDialog.FileName); // Sadece dosya adı, veya
+                                                                          // metinbelgesi = openFileDialog.FileName;
 
-                // Dosyayı satır satır okumak için StreamReader kullanıyoruz
-                using (StreamReader sr = new StreamReader(Ydosyayolu))
+
+                ingkelimeler.Clear();
+                türkcekelimeler.Clear();
+
+                try
                 {
-                    string satır;
-
-                    // Satır bitene kadar oku
-                    while ((satır = sr.ReadLine()) != null)
+                    using (StreamReader sr = new StreamReader(Ydosyayolu))
                     {
-                        // Her satırda İngilizce ve Türkçe kelime ':' ile ayrılmış şekilde gelir
-                        string[] kelimeler = satır.Split(':');
-
-                        // Sadece 2 parça varsa (yani doğru formatta satırsa) işlem yap
-                        if (kelimeler.Length == 2)
+                        string satir;
+                        while ((satir = sr.ReadLine()) != null)
                         {
-                            // İlk parça İngilizce, ikinci parça Türkçe kelime olacak şekilde listelere ekle
-                            ingkelimeler.Add(kelimeler[0].Trim());
-                            türkcekelimeler.Add(kelimeler[1].Trim());
+                            string[] kelimeler = satir.Split(':');
+                            if (kelimeler.Length == 2)
+                            {
+                                ingkelimeler.Add(kelimeler[0].Trim());
+                                türkcekelimeler.Add(kelimeler[1].Trim());
+                            }
                         }
                     }
-                }
 
-                // Bilgilendirme mesajı
-                MessageBox.Show("Dosya başarıyla okundu.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sayac = ingkelimeler.Count;
+                    label5.Text = "Eklenen kelime sayısı: " + sayac;
+
+                    MessageBox.Show("Dosya başarıyla okundu.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dosya okunurken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                // Kullanıcı dosya seçmezse uyarı ver
                 MessageBox.Show("Herhangi bir dosya seçilmedi.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -294,6 +317,7 @@ namespace WinFormsApp1
 
 
 
+
     }
-    }
+}
 

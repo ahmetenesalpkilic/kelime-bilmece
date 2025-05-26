@@ -12,6 +12,7 @@ namespace WinFormsApp1
         List<string> türkceleri;
         int sayac = 0;
         bool txtbool = true;
+        string metinbelgesi;
 
         public Form1()
         {
@@ -200,15 +201,15 @@ namespace WinFormsApp1
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 // Seçilen dosyanýn yolunu alýyoruz
-                string dosyaYolu = openFileDialog.FileName;
+                metinbelgesi = openFileDialog.FileName;
 
                 try
                 {
                     // Dosya var mý kontrol ediyoruz ve içeriðini MessageBox ile yazýyoruz
-                    if (File.Exists(dosyaYolu))
+                    if (File.Exists(metinbelgesi))
                     {
                         // using bloðu ile StreamReader'ý açýp, dosya iþleminden sonra otomatik olarak kapatýlmasýný saðlýyoruz
-                        using (StreamReader sr = new StreamReader(dosyaYolu))
+                        using (StreamReader sr = new StreamReader(metinbelgesi))
                         {
                             string satýr;
                             while ((satýr = sr.ReadLine()) != null)

@@ -1,21 +1,21 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
-    using System.Media;
-    using WMPLib;
-    using DuoVia.FuzzyStrings;
-    using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-    using Microsoft.VisualBasic.Devices;
-    using NAudio.Wave;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Media;
+using WMPLib;
+using DuoVia.FuzzyStrings;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.VisualBasic.Devices;
+using NAudio.Wave;
 
 namespace WinFormsApp1
-    {
+{
     public partial class Form3 : Form
     {
         List<string> ingkelimeler;
@@ -25,6 +25,7 @@ namespace WinFormsApp1
         bool tıklama = true;
         bool cıkıs = false;
 
+        
         public Form3(List<string> ingkelimeler, List<string> türkceleri)
         {
             InitializeComponent();
@@ -35,17 +36,21 @@ namespace WinFormsApp1
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
 
+            button3.Visible = false;
+            label5.Visible = false; 
+            //Kelime silme butonu istenildiği gibi çalışmadığı için şuanlık kaldırıldı
+
 
         }
 
 
 
-      /*  private void metinbelgesineyaz()
-        {
+        /*  private void metinbelgesineyaz()
+          {
 
 
 
-        }*/
+          }*/
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -216,10 +221,10 @@ namespace WinFormsApp1
         }
 
 
-
+        //--------------------------------------------------
         private void button3_Click(object sender, EventArgs e) // Kelime Sil butonu
         {
-            DialogResult cevap=MessageBox.Show("Silmek istediğinize emin misiniz?", "Uyarı", MessageBoxButtons.YesNo);
+            DialogResult cevap = MessageBox.Show("Silmek istediğinize emin misiniz?", "Uyarı", MessageBoxButtons.YesNo);
 
             if (cevap == DialogResult.Yes)
             {
@@ -232,13 +237,15 @@ namespace WinFormsApp1
 
                 randsayac.RemoveAt(sayac); // randsayac listesinden de o sıradaki index'i kaldırdık Çünkü o sıra artık işe yaramayacak.
                 MessageBox.Show("Silme işlemi başarılı.");
-                label1.Text="İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
             }
             else
             {
                 // Hayır'a basıldıysa hiçbir şey yapma ya da istersen iptal mesajı ver
                 MessageBox.Show("Silme işlemi iptal edildi.");
             }
+
+            //----------------------------------------------
         }
     }
 
