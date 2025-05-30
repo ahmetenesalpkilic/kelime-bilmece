@@ -180,7 +180,8 @@ namespace WinFormsApp1
             }
             else
             {
-                Form3 f3 = new Form3(ingkelimeler, türkceleri);
+                metinbelgesi=Path.GetFileName(metinbelgesi);
+                Form3 f3 = new Form3(ingkelimeler, türkceleri, metinbelgesi);
                 this.Hide();
                 f3.ShowDialog();
             }
@@ -228,6 +229,7 @@ namespace WinFormsApp1
                         }
                         txtbool = false;
                         MessageBox.Show("Dosyayý baþarýlý þekilde kaydettiniz", "Tebrikler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        label2.Text = "          Metin Belgesini eklediniz \n       Kelime Bulmaya geçmek için \n          Onayla Butonuna Týklayýn";
                     }
                     else
                     {
@@ -241,6 +243,8 @@ namespace WinFormsApp1
                 }
             }
             //button2.Visible = false;
+
+            
         }
 
 

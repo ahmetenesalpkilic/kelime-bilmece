@@ -72,7 +72,7 @@ namespace WinFormsApp1
                             sw.WriteLine(ingkelimeler[i] + ":" + türkcekelimeler[i]);
                         }
                     }
-                    Form3 f3 = new Form3(ingkelimeler, türkcekelimeler); // metinbelgesi yerine Ydosyayolu
+                    Form3 f3 = new Form3(ingkelimeler, türkcekelimeler, metinbelgesi); // metinbelgesi yerine Ydosyayolu
                     this.Hide();
                     f3.ShowDialog();
                 }
@@ -220,7 +220,7 @@ namespace WinFormsApp1
                         sw.WriteLine((string)ingkelimeler[i] + ":" + (string)türkcekelimeler[i]);
                     }
                 }
-                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler); // metinbelgesi yerine Ydosyayolu
+                Form3 f3 = new Form3(ingkelimeler, türkcekelimeler, metinbelgesi); // metinbelgesi yerine Ydosyayolu
                 this.Hide();
                 f3.ShowDialog();
             }

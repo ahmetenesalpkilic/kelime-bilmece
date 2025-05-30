@@ -24,14 +24,17 @@ namespace WinFormsApp1
         int sayac = 0;
         bool tıklama = true;
         bool cıkıs = false;
+        string secilenMetinbelgesi;
 
-        
-        public Form3(List<string> ingkelimeler, List<string> türkceleri)
+
+
+        public Form3(List<string> ingkelimeler, List<string> türkceleri,string secilenMetinbelgesi)
         {
             InitializeComponent();
-
+            this.secilenMetinbelgesi= secilenMetinbelgesi; 
             this.ingkelimeler = ingkelimeler;
             this.türkceleri = türkceleri;
+            label8.Text = secilenMetinbelgesi+" adlı metin belgesi seçildi!";
 
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();

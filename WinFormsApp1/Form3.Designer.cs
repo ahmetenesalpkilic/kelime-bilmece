@@ -38,6 +38,7 @@
             checkBox1 = new CheckBox();
             button3 = new Button();
             label5 = new Label();
+            label8 = new Label();
             SuspendLayout();
             // 
             // label2
@@ -136,11 +137,22 @@
             label5.TabIndex = 14;
             label5.Text = "     Eğer kelimeyi listeden \r\nkaldırmak istiyorsanız tıklayın!";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = SystemColors.ControlDarkDark;
+            label8.Location = new Point(42, 465);
+            label8.Name = "label8";
+            label8.Size = new Size(276, 20);
+            label8.TabIndex = 20;
+            label8.Text = "Hangi metin belgesi acıldı bilgilendirme";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(888, 560);
+            Controls.Add(label8);
             Controls.Add(label5);
             Controls.Add(button3);
             Controls.Add(checkBox1);
@@ -172,5 +184,6 @@
         private CheckBox checkBox1;
         private Button button3;
         private Label label5;
+        private Label label8;
     }
 }
