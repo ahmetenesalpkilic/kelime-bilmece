@@ -21,10 +21,14 @@ namespace WinFormsApp1
         List<string> ingkelimeler;
         List<string> türkceleri;
         List<int> randsayac;
+        Dictionary<string,string> silinecektemp= new Dictionary<string,string>();
         int sayac = 0;
         bool tıklama = true;
         bool cıkıs = false;
         string secilenMetinbelgesi;
+        string masaUstuYol=Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        string metinBelgesiYol;
+
 
 
 
@@ -34,26 +38,63 @@ namespace WinFormsApp1
             this.secilenMetinbelgesi= secilenMetinbelgesi; 
             this.ingkelimeler = ingkelimeler;
             this.türkceleri = türkceleri;
+
+            metinBelgesiYol = Path.Combine(masaUstuYol, "Kelimeler_Dosyasi", secilenMetinbelgesi ); //Metin belgesine ulasıyoruz
             label8.Text = secilenMetinbelgesi+" adlı metin belgesi seçildi!";
+
 
             Random rnd = new Random();
             randsayac = Enumerable.Range(0, ingkelimeler.Count).OrderBy(x => rnd.Next()).ToList();
 
-            button3.Visible = false;
-            label5.Visible = false; 
-            //Kelime silme butonu istenildiği gibi çalışmadığı için şuanlık kaldırıldı
+            
+
 
 
         }
 
 
 
-        /*  private void metinbelgesineyaz()
+          private void metinbelgesineyaz() //Metin Belgesine Yaz Metodunda ilk olarak Listede olan kelımelerı kaldırıp ondan sonra yazacak
           {
+            if (türkceleri.Count >= silinecektemp.Count) { //silinecekler kelimelerimizden az ise
+
+            for (int i = 0; i < silinecektemp.Count; i++) {
+                var tempeleman = silinecektemp.ElementAt(i); // ilk indisteki 2'liyi aldık
+
+                string ingTemp = tempeleman.Key;
+                string trTemp  = tempeleman.Value; //türkcesını ve ıngılızcesını attık
+
+                    ingkelimeler.Remove(ingTemp);
+                    türkceleri.Remove(trTemp);
+                    //Kelimeleri listeden cıkardık (Remove String icin, remove at indis icin)
+
+
+                }
+
+                StreamWriter sw = new StreamWriter(metinBelgesiYol);
+
+            for(int i=0; i<türkceleri.Count; i++)
+            {
+                sw.WriteLine(ingkelimeler[i] + ":" + türkceleri[i]);
+            }
+            sw.Close();
+            }
+
+
+            else // Eger tum kelimeler silindiye metin belgesini bosalt
+            {
+                StreamWriter sw = new StreamWriter(metinBelgesiYol);
+                sw.Write("");
+                sw.Close();
+            }
 
 
 
-          }*/
+
+        }
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -62,7 +103,7 @@ namespace WinFormsApp1
             {
                 // İlk tıklamada sadece İngilizce kelimeyi göster
                 button2.Text = "Kontrol et";
-                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]];
                 tıklama = false;
                 return;
             }
@@ -70,6 +111,7 @@ namespace WinFormsApp1
             if (cıkıs)
             {
                 // Çıkış yap (formu kapat)
+                metinbelgesineyaz();    
                 this.Close(); // veya Application.Exit();
                 return;
             }
@@ -140,17 +182,18 @@ namespace WinFormsApp1
 
                 if (sayac < türkceleri.Count) //sorulacak kelime kaldı mı kontrol
                 {
-                    label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                    label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]];
                 }
                 else //soracak kelime kalmadıysa --> tüm kelimeleri bilindi..
                 {
-                    ;
-
+                    
+                   
                     label1.Text = "İngilizce kelime";
                     label4.Text = "🎉 Tüm kelimeleri bildin, tebrikler!";
                     button2.Text = "ÇIKIŞ YAP";
                     button2.ForeColor = Color.Red;
                     cıkıs = true;
+                    
                 }
             }
             else // eger girilen kelime yanlış ise 
@@ -199,7 +242,7 @@ namespace WinFormsApp1
             // Eğer hala kelime kaldıysa yeni soruyu göster
             if (sayac < randsayac.Count)
             {
-                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]];
                 textBox1.Clear();
                 label4.Text = "";
             }
@@ -215,11 +258,11 @@ namespace WinFormsApp1
         {
             if (checkBox1.Checked)
             {
-                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]] + " (" + türkceleri[randsayac[sayac]] + ")";
+                label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]] + " (" + türkceleri[randsayac[sayac]] + ")";
             }
             else
             {
-                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+                label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]];
             }
         }
 
@@ -232,15 +275,30 @@ namespace WinFormsApp1
             if (cevap == DialogResult.Yes)
             {
                 // Evet'e basıldıysa burası çalışır
-                // Silme işlemi vs burada yapılır
-                int index = randsayac[sayac];
+                // Burada kelimeleri bir listeye atarız
 
-                ingkelimeler.RemoveAt(index);
-                türkceleri.RemoveAt(index);
+                silinecektemp.Add(ingkelimeler[randsayac[sayac]], türkceleri[randsayac[sayac]]);
 
-                randsayac.RemoveAt(sayac); // randsayac listesinden de o sıradaki index'i kaldırdık Çünkü o sıra artık işe yaramayacak.
+                sayac++;
+
                 MessageBox.Show("Silme işlemi başarılı.");
-                label1.Text = "İngilizce kelime: " + ingkelimeler[randsayac[sayac]];
+
+                if (sayac==türkceleri.Count())
+                {
+                   
+                    label1.Text = "İngilizce kelime : ";
+                    label4.Text = "🎉 Tüm kelimeleri bildin, tebrikler!";
+                    button2.Text = "ÇIKIŞ YAP";
+                    button2.ForeColor = Color.Red;
+                    cıkıs = true;
+                    return;
+                }
+
+                label1.Text = "İngilizce kelime : " + ingkelimeler[randsayac[sayac]]; //yeni kelimeye geçtik
+
+                
+
+               
             }
             else
             {
